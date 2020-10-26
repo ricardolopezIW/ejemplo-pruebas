@@ -1,9 +1,19 @@
 package service;
 
 public class ProducerServiceImpl implements ProducerService{
+
+    Validador validador;
+
+    public ProducerServiceImpl(Validador validador) {
+        this.validador = validador;
+    }
+
     @Override
     public boolean deliver(Message message) {
-        if (message.getContenido().equals("ok")){
+
+        boolean validaResultado = validador.valida(message.getContenido());
+
+        if (validaResultado && message.getContenido().equals("ok") ){
             // aqui va todo el proceso de envio de mensaje
             return true;
         }
