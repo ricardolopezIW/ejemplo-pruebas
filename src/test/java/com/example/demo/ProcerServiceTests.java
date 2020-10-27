@@ -19,23 +19,46 @@ class ProcerServiceTests {
 	@Test
 	void deliver_true() {
 
-		Message message = new Message();
-		message.setContenido("ok");
-
+		Message message = getMessage();
 		Mockito.when(validador.valida(message.getContenido())).thenReturn(true);
 
 		boolean resultado = ps.deliver(message);
 		Assertions.assertEquals(true, resultado);
+
+
+		message.setMore("");
+		resultado = ps.deliver(message);
+		Assertions.assertEquals(false, resultado);
+
+	}
+
+	private Message getMessage() {
+		Message message = new Message();
+		message.setContenido("ok");
+		message.setMore("<html></html>");
+		return message;
 	}
 
 	@Test
 	void deliver_false() {
-		Message message = new Message();
-		message.setContenido("not ok");
-
+		Message message = getMessage();
 		Mockito.when(validador.valida(message.getContenido())).thenReturn(false);
-
 		boolean resultado = ps.deliver(message);
+		Assertions.assertEquals(true, resultado, "Fallo la prueba debido a que esperaba false");
+
+		message.setMore("");
+		message.setContenido("not ok");
+		resultado = ps.deliver(message);
+		Assertions.assertEquals(false, resultado, "Fallo la prueba debido a que esperaba false");
+
+		message.setMore("");
+		message.setContenido("ok");
+		resultado = ps.deliver(message);
+		Assertions.assertEquals(false, resultado, "Fallo la prueba debido a que esperaba false");
+
+
+		message.setContenido("not ok");
+		resultado = ps.deliver(message);
 		Assertions.assertEquals(false, resultado, "Fallo la prueba debido a que esperaba false");
 	}
 

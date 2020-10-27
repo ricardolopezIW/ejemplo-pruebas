@@ -11,13 +11,9 @@ public class ProducerServiceImpl implements ProducerService{
     @Override
     public boolean deliver(Message message) {
 
-        boolean validaResultado = validador.valida(message.getContenido());
+        boolean newValidation = message.getMore().length() > 0;
 
-        if (validaResultado && message.getContenido().equals("ok") ){
-            // aqui va todo el proceso de envio de mensaje
-            return true;
-        }
-        return false;
+        return newValidation && message.getContenido().equals("ok");
     }
 
     @Override
