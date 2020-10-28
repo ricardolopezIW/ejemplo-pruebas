@@ -55,14 +55,14 @@ pipeline {
             }
         }
 
-        /*stage('Publish artifact') {
+        stage('Publish artifact') {
           steps {
                 echo 'Publish artifact in Nexus repository'
-                sh 'mvn --settings settings.xml clean deploy -Dmaven.test.skip=true -Dnexus.url.snapshots=http://localhost: -Dnexus.server.id=' + NEXUS_SERVER_ID
+                sh 'mvn deploy -Dmaven.test.skip=true -Dnexus.url.snapshots=http://localhost:8081 -Dnexus.server.id=nexus'
           }
         }
 
-        stage('Deploy') {
+        /*stage('Deploy') {
             steps {
                 echo 'Deploy in dev'
                 sh 'docker run '
