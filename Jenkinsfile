@@ -62,12 +62,13 @@ pipeline {
           }
         }
 
-        /*stage('Deploy') {
+        stage('Deploy') {
             steps {
                 echo 'Deploy in dev'
-                sh 'docker run '
+                sh 'docker build -t ejemplo-pruebas .'
+                sh 'docker run -d --name ejemplo-pruebas -p 9090:9090 ejemplo-pruebas'
             }
-        }*/
+        }
     }
 
     post {
