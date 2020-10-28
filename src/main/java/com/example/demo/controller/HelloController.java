@@ -10,6 +10,6 @@ public class HelloController {
 
     @GetMapping
     public String get(){
-        return "Thank you for invoke me twice!";
+        return "Thank you for invoke me!";
     }
 }
