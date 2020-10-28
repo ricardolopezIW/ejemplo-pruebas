@@ -65,7 +65,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy in dev'
-                sh 'docker rm ejemplo-pruebas -f'
+                try {
+                    sh 'docker rm ejemplo-pruebas -f'
+                } catch (e) {
+                    echo 'the container already not exists'
+                }
                 sh 'docker build -t ejemplo-pruebas .'
                 sh 'docker run -d --name ejemplo-pruebas -p 9090:9090 ejemplo-pruebas'
             }
