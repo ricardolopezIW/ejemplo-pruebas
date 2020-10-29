@@ -9,8 +9,6 @@ import service.ProducerService;
 import service.ProducerServiceImpl;
 import service.Validador;
 
-import java.time.LocalDateTime;
-
 @SpringBootTest
 class ProcerServiceTests {
 
@@ -73,21 +71,10 @@ class ProcerServiceTests {
 	}
 
 	@Test
-	void generadorTurno_ok() {
-
-		LocalDateTime now = LocalDateTime.now();
-		String turno = "NAY" + now.toString();
-		String resultado = ps.generadorTurno(now);
-		Assertions.assertEquals(turno, resultado);
+	void cambiaMensaje_false() {
+		Message message = new Message();
+		message.setContenido(null);
+		String resultado = ps.cambiaMensaje(message);
+		Assertions.assertEquals("Mensaje: null", resultado);
 	}
-
-	@Test
-	void generadorTurno_false() {
-		Assertions.assertThrows(NullPointerException.class, () -> ps.generadorTurno(null));
-	}
-
-
-
-
-
 }
