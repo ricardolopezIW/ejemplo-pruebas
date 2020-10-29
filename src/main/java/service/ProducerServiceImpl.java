@@ -34,9 +34,8 @@ public class ProducerServiceImpl implements ProducerService{
     }
 
     @Override
-    public String generadorTurno() {
-        LocalDateTime now = LocalDateTime.now();
-        String turno = "NAY" + now.toString();
+    public String generadorTurno(LocalDateTime fecha) {
+        String turno = "NAY" + fecha.toString();
         return turno;
     }
 
