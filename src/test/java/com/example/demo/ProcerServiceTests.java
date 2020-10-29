@@ -85,8 +85,6 @@ class ProcerServiceTests {
 
 	@Test
 	void agregarTramite_ok() {
-
-
 		boolean agregado = ps.agregaTramite("ALTA");
 		Assertions.assertEquals(true, agregado);
 	}
@@ -97,7 +95,6 @@ class ProcerServiceTests {
 		        agregado = ps.agregaTramite("ALTA");
 
 		Assertions.assertEquals(false,   agregado);
-
 	}
 
 	@Test
@@ -105,6 +102,5 @@ class ProcerServiceTests {
 		boolean agregado = ps.agregaTramite(null);
 		agregado = ps.agregaTramite(null);
 		Assertions.assertEquals(false,   agregado);
-
 	}
 }
