@@ -6,6 +6,7 @@ import java.util.*;
 public class ProducerServiceImpl implements ProducerService{
 
     Validador validador;
+    Set<String> tramites = new HashSet<>();
 
     public ProducerServiceImpl(Validador validador) {
         this.validador = validador;
@@ -51,7 +52,7 @@ public class ProducerServiceImpl implements ProducerService{
 
     @Override
     public boolean agregaTramite(String tramite) {
-        Set<String> tramites = new HashSet<>();
+
         boolean agregado = tramites.add(tramite);
         return agregado;
     }

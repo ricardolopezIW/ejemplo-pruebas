@@ -3,11 +3,15 @@ package com.example.demo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.springframework.boot.test.context.SpringBootTest;
 import service.Message;
 import service.ProducerService;
 import service.ProducerServiceImpl;
 import service.Validador;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootTest
 class ProcerServiceTests {
@@ -70,11 +74,37 @@ class ProcerServiceTests {
 		Assertions.assertEquals("Mensaje: "+" nuevo", resultado);
 	}
 
+
 	@Test
 	void cambiaMensaje_false() {
 		Message message = new Message();
 		message.setContenido(null);
 		String resultado = ps.cambiaMensaje(message);
 		Assertions.assertEquals("Mensaje: null", resultado);
+	}
+
+	@Test
+	void agregarTramite_ok() {
+
+
+		boolean agregado = ps.agregaTramite("ALTA");
+		Assertions.assertEquals(true, agregado);
+	}
+
+	@Test
+	void agregarTramite_false() {
+		boolean agregado = ps.agregaTramite("ALTA");
+		        agregado = ps.agregaTramite("ALTA");
+
+		Assertions.assertEquals(false,   agregado);
+
+	}
+
+	@Test
+	void agregarTramite_null() {
+		boolean agregado = ps.agregaTramite(null);
+		agregado = ps.agregaTramite(null);
+		Assertions.assertEquals(false,   agregado);
+
 	}
 }
