@@ -31,30 +31,48 @@ public class ProducerServiceImpl implements ProducerService{
         List<String> tiposDocumentos = new ArrayList<>();
         tiposDocumentos.add("comprobante de domicilio");
         tiposDocumentos.add("identificacion oficial");
+        boolean estaVacia = validador.listaNoNulaNiVacia(tiposDocumentos);
+        if (!estaVacia) {
+            return new ArrayList<>();
+        }
         return tiposDocumentos;
     }
 
     @Override
     public String generadorTurno(LocalDateTime fecha) {
-        String turno = "NAY" + fecha.toString();
-        return turno;
+        boolean esFechaValida = validador.fechaFormato(fecha);
+        if (esFechaValida) {
+            String turno = "NAY" + fecha.toString();
+            return turno;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public String encuentraTramite(String tramite) {
-        Map<String, String> tramites = new HashMap<>();
-        tramites.put("ALTA","Alta vehiculo");
-        tramites.put("BAJA", "Baja vehiculo");
+        boolean tramiteValido = validador.valida(tramite);
+        if (tramiteValido) {
+            Map<String, String> tramites = new HashMap<>();
+            tramites.put("ALTA", "Alta vehiculo");
+            tramites.put("BAJA", "Baja vehiculo");
 
-        String respuesta = tramites.get(tramite);
-        return respuesta;
+            String respuesta = tramites.get(tramite);
+            return respuesta;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean agregaTramite(String tramite) {
-
-        boolean agregado = tramites.add(tramite);
-        return agregado;
+        boolean esValidoTramite = validador.valida(tramite);
+        if (esValidoTramite) {
+            boolean agregado = tramites.add(tramite);
+            return agregado;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -6,8 +6,8 @@ import java.util.List;
 public interface ProducerService {
     boolean deliver(Message message);
     String cambiaMensaje(Message message);
-    List<String> tiposDocumentos();
-    String generadorTurno(LocalDateTime fecha);
-    String encuentraTramite(String tramite);
-    boolean agregaTramite(String tramite);
+    List<String> tiposDocumentos();//GABRIEL
+    String generadorTurno(LocalDateTime fecha);//VERO
+    String encuentraTramite(String tramite); //ARMANDO
+    boolean agregaTramite(String tramite); //CLAUDIA
 }

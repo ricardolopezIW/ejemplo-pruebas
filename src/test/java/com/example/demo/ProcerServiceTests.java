@@ -23,7 +23,7 @@ class ProcerServiceTests {
 	void deliver_true() {
 
 		Message message = getMessage();
-		Mockito.when(validador.valida(message.getContenido())).thenReturn(true);
+		Mockito.when(validador.valida(message.getContenido())).thenReturn(false);
 
 		boolean resultado = ps.deliver(message);
 		Assertions.assertEquals(true, resultado);
