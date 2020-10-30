@@ -82,22 +82,22 @@ class ProcerServiceTests {
 	}
 	@Test
 	void agregarTramite_ok() {
+		Mockito.when(validador.valida("ALTA")).thenReturn(true);
 		boolean agregado = ps.agregaTramite("ALTA");
 		Assertions.assertEquals(true, agregado);
 	}
 
 	@Test
-	void agregarTramite_false() {
+	void agregarTramite_false() { //tramite repetido
+		Mockito.when(validador.valida("ALTA")).thenReturn(false);
 		boolean agregado = ps.agregaTramite("ALTA");
-		agregado = ps.agregaTramite("ALTA");
-
 		Assertions.assertEquals(false,   agregado);
 	}
 
 	@Test
 	void agregarTramite_null() {
+		Mockito.when(validador.valida(null)).thenReturn(false);
 		boolean agregado = ps.agregaTramite(null);
-		agregado = ps.agregaTramite(null);
 		Assertions.assertEquals(false,   agregado);
 	}
 
