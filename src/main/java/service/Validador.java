@@ -14,7 +14,7 @@ public class Validador {
             return false;
         }
         try {
-            String format = fechaYHora.format(DateTimeFormatter.ofPattern("dd-MM-yyy hh:mm:ss"));
+            String format = fechaYHora.format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
         } catch (Exception e) {
             return false;
         }
