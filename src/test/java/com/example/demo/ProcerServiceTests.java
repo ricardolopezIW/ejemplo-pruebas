@@ -10,6 +10,7 @@ import service.ProducerServiceImpl;
 import service.Validador;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 class ProcerServiceTests {
@@ -127,5 +128,18 @@ class ProcerServiceTests {
 		Assertions.assertEquals("Mensaje: no encontrado", resultado);
 	}
 
+
+	@Test
+	void  tiposDocumentos_ok() {
+		List<String> resultado = ps.tiposDocumentos();
+		Assertions.assertEquals(true, resultado.contains("comprobante de domicilio"));
+	}
+
+	@Test
+	void  tiposDocumentos_false() {
+		List<String> resultado = ps.tiposDocumentos();
+
+		Assertions.assertEquals(false, resultado.isEmpty());
+	}
 
 }
