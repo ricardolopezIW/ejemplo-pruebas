@@ -106,13 +106,16 @@ class ProcerServiceTests {
 
 		LocalDateTime now = LocalDateTime.now();
 		String turno = "NAY" + now.toString();
+		Mockito.when(validador.fechaFormato(now)).thenReturn(true);
 		String resultado = ps.generadorTurno(now);
 		Assertions.assertEquals(turno, resultado);
 	}
 
 	@Test
 	void generadorTurno_false() {
-		Assertions.assertThrows(NullPointerException.class, () -> ps.generadorTurno(null));
+		Mockito.when(validador.fechaFormato(null)).thenReturn(false);
+		String resultado = ps.generadorTurno(null);
+		Assertions.assertEquals(null, resultado);
 	}
 
 
