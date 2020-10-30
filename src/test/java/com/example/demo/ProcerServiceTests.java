@@ -121,12 +121,14 @@ class ProcerServiceTests {
 
 	@Test
 	void encuentraTramite_ok(){
+		Mockito.when(validador.valida("ALTA")).thenReturn(true);
 		String resultado = ps.encuentraTramite("ALTA");
 		Assertions.assertEquals("Alta vehiculo", resultado);
 	}
 
 	@Test
 	void encuentraTramite_notOk(){
+		Mockito.when(validador.valida(null)).thenReturn(false);
 		String resultado = ps.encuentraTramite("COMPRAVENTA");
 		Assertions.assertEquals(null, resultado);
 	}
