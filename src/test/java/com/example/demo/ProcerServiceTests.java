@@ -116,17 +116,18 @@ class ProcerServiceTests {
 	}
 
 
-	//@Test
+	@Test
 	void encuentraTramite_ok(){
 		String resultado = ps.encuentraTramite("ALTA");
-		Assertions.assertEquals("Mensaje: "+"ALTA", resultado);
+		Assertions.assertEquals("Alta vehiculo", resultado);
 	}
 
-	//@Test
+	@Test
 	void encuentraTramite_notOk(){
 		String resultado = ps.encuentraTramite("COMPRAVENTA");
-		Assertions.assertEquals("Mensaje: no encontrado", resultado);
+		Assertions.assertEquals(null, resultado);
 	}
+
 
 
 	@Test
@@ -141,5 +142,6 @@ class ProcerServiceTests {
 
 		Assertions.assertEquals(false, resultado.isEmpty());
 	}
+
 
 }
