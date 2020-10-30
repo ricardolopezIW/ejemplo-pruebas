@@ -131,20 +131,17 @@ class ProcerServiceTests {
 		Assertions.assertEquals(null, resultado);
 	}
 
-
-
 	@Test
 	void  tiposDocumentos_ok() {
+		Mockito.when(validador.listaNoNulaNiVacia(Mockito.anyList())).thenReturn(true);
 		List<String> resultado = ps.tiposDocumentos();
 		Assertions.assertEquals(true, resultado.contains("comprobante de domicilio"));
 	}
 
 	@Test
 	void  tiposDocumentos_false() {
+		Mockito.when(validador.listaNoNulaNiVacia(Mockito.anyList())).thenReturn(false);
 		List<String> resultado = ps.tiposDocumentos();
-
-		Assertions.assertEquals(false, resultado.isEmpty());
+		Assertions.assertEquals(true, resultado.isEmpty());
 	}
-
-
 }
