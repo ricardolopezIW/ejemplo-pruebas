@@ -3,6 +3,9 @@ package service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidadorTest {
@@ -17,4 +20,14 @@ class ValidadorTest {
         Assertions.assertEquals(false, notOk);
 
     }
+
+    @Test
+    void valida_ok(){
+        Validador validador = new Validador();
+        LocalDateTime now = LocalDateTime.now();
+        boolean fechaFormato = validador.fechaFormato(now);
+        Assertions.assertEquals(true, fechaFormato);
+    }
+
+
 }
